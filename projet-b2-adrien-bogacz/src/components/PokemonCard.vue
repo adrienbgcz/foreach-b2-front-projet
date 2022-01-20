@@ -14,14 +14,10 @@
       </v-card-title>
 
       <v-card-actions>
-        <v-btn
-            color="orange lighten-2"
-            text
-        >
-          Explore
+        <v-btn color="orange lighten-2" text >
+          <router-link :to="{ path: `/pokemon/${pokemonId}` }">Détails</router-link>
         </v-btn>
       </v-card-actions>
-
 
     </v-card>
 
@@ -41,14 +37,15 @@ export default {
   data () {
     return {
       imageUrl: "",
-      pokemonName: ""
+      pokemonName: "",
+      pokemonId: 0
     }
   },
   async mounted() {
     const pokemonInfos = await axios.get(this.infosUrl)
-    console.log(pokemonInfos)
     this.imageUrl = await pokemonInfos.data.sprites.other.dream_world.front_default
     this.pokemonName = await pokemonInfos.data.name
+    this.pokemonId = await pokemonInfos.data.id
   }
 }
 </script>
