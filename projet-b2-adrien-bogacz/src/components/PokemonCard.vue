@@ -7,17 +7,21 @@
       <v-img
           :src=imageUrl
           height="150px"
+          contain
       ></v-img>
 
       <v-card-title>
         {{ pokemonName }}
       </v-card-title>
-
+      <router-link :to="{ path: `/pokemon/${pokemonId}` }">
       <v-card-actions>
+
         <v-btn color="orange lighten-2" text >
-          <router-link :to="{ path: `/pokemon/${pokemonId}` }">Détails</router-link>
+          Détails
         </v-btn>
+
       </v-card-actions>
+      </router-link>
 
     </v-card>
 
@@ -56,11 +60,15 @@ export default {
 }
 
 .v-image__image--cover {
-  background-size: contain;
+  padding: 30px
 }
 
 .v-card {
-  margin: 30px
+  margin: 30px;
+}
+
+a:-webkit-any-link {
+  text-decoration:none;
 }
 
 </style>

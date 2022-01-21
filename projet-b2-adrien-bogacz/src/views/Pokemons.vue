@@ -1,33 +1,62 @@
 <template>
-  <div class="allCards">
-      <card v-for="pokemon in pokemons.results" :key="pokemon.id" :infos-url="pokemon.url" />
+  <div>
+    <input-filter @input="getValue" />
+    <v-row>
+      <v-col cols="3" v-for="pokemon in filteredPokemons" :key="pokemon.name" >
+        <card :infos-url="pokemon.url"/>
+      </v-col>
+    </v-row>
   </div>
 
 </template>
 
 <script>
 import Card from "@/components/PokemonCard";
-import {getAllPokemons} from "../apis/pokemons"
+import InputFilter from "@/components/inputFilter"
+import {getAllPokemons} from "@/apis/pokemons";
 
 
 export default {
   name: "Home",
   components: {
-    Card
+    Card,
+    InputFilter
   },
   data() {
     return {
-      pokemons: [],
+      inputValue: "",
+      pokemons : []
+
+    }
+  },
+  computed : {
+    filteredPokemons : function(){
+      if(this.$store.state.pokemons.length > 0) return this.$store.state.pokemons.filter((pokemon) => pokemon.name.includes(this.inputValue))
+      return this.pokemons.results?.filter((pokemon) => pokemon.name.includes(this.inputValue))
     }
   },
   async mounted() {
-    try {
-      this.pokemons = await getAllPokemons()
-    } catch(e) {
-      console.error(e)
-    }
+    await this.filteredData()
   },
 
+  methods: {
+    getValue(value) {
+      this.inputValue = value;
+      console.log(this.inputValue)
+    },
+    async filteredData() {
+      try {
+        const pokemons = await getAllPokemons()
+        await this.$store.dispatch('getPokemons', pokemons.results)
+        this.pokemons = pokemons
+        console.log(this.pokemons)
+        return pokemons
+      } catch(e) {
+        console.error(e)
+      }
+
+    }
+  }
 };
 </script>
 
@@ -36,5 +65,9 @@ export default {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+}
+
+v-text-field {
+  width: 400px
 }
 </style>

@@ -1,6 +1,12 @@
 <template>
   <div>
-    <p>{{ pokemonInfos }}</p>
+    <v-img :src="imageUrl" height="300px" contain/>
+    <div>{{pokemonInfos.name}}</div>
+    <div>{{pokemonInfos.height}}"</div>
+    <div>{{pokemonInfos.weight}} lbs</div>
+
+
+
   </div>
 </template>
 
@@ -12,11 +18,13 @@ export default {
 
   data() {
     return {
-      pokemonInfos:{}
+      pokemonInfos:{},
+      imageUrl:""
     }
   },
   async mounted() {
     this.pokemonInfos = await getPokemon(this.$route.params.id)
+    this.imageUrl = await this.pokemonInfos.sprites.other.dream_world.front_default
     console.log(this.pokemonInfos)
   }
 }
