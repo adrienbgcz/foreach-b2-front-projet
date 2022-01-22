@@ -1,22 +1,18 @@
 <template>
   <v-text-field
       outlined
-      label="Append"
+      label="Rechercher"
       append-icon="mdi-map-marker"
       v-model="inputValue"
-      @input="$emit('input', inputValue); $emit('refreshList')"
+      @input="$emit('input', inputValue)"
   ></v-text-field>
 </template>
 
 <script>
+
 export default {
   name: "inputFilter",
-  /*props: {
-    value: {
-      type: String,
-      required: false
-    }
-  },*/
+
   data() {
     return {
       inputValue: ''
@@ -29,5 +25,13 @@ export default {
 </script>
 
 <style scoped>
+.v-input {
+  width: 300px;
 
+}
+
+.v-text-field.v-text-field--enclosed {
+  margin-top: 30px;
+  margin-left: 30px
+}
 </style>

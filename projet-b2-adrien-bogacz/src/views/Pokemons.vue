@@ -1,9 +1,10 @@
 <template>
   <div>
     <input-filter @input="getValue" />
+
     <v-row>
       <v-col cols="3" v-for="pokemon in filteredPokemons" :key="pokemon.name" >
-        <card :infos-url="pokemon.url"/>
+        <card :infos-url="pokemon.url" @incrementCounterImages="incrementCounterImage" :is-loaded-all-images="isLoadedAllImages"/>
       </v-col>
     </v-row>
   </div>
@@ -25,8 +26,9 @@ export default {
   data() {
     return {
       inputValue: "",
-      pokemons : []
-
+      pokemons : [],
+      counterImage: 0,
+      isLoadedAllImages: false
     }
   },
   computed : {
@@ -36,7 +38,15 @@ export default {
     }
   },
   async mounted() {
-    await this.filteredData()
+    if(this.$store.state.pokemons.length !== 0) {
+      console.log("ici")
+      console.log(this.isLoadedAllImages)
+      this.pokemons.results = this.$store.state.pokemons
+      console.log(this.pokemons)
+    } else {
+      console.log("là")
+      await this.filteredData()
+    }
   },
 
   methods: {
@@ -49,12 +59,15 @@ export default {
         const pokemons = await getAllPokemons()
         await this.$store.dispatch('getPokemons', pokemons.results)
         this.pokemons = pokemons
-        console.log(this.pokemons)
-        return pokemons
       } catch(e) {
         console.error(e)
       }
-
+    },
+    incrementCounterImage() {
+      this.counterImage ++
+      console.log(this.counterImage)
+      console.log(this.pokemons.results?.length)
+      if(this.pokemons.results?.length === this.counterImage) this.isLoadedAllImages = true
     }
   }
 };
