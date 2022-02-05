@@ -29,7 +29,11 @@
       <v-card-actions>
 
         <v-btn color="orange lighten-2" text >
-          Détails
+          {{ $t("more-infos-btn") }}
+        </v-btn>
+
+        <v-btn color="orange lighten-2" text >
+          {{ $t("add-favorites-btn") }}
         </v-btn>
 
       </v-card-actions>
@@ -82,7 +86,6 @@ export default {
     async getImage() {
 
       this.image = await this.pokemonInfos.data.sprites.other.dream_world.front_default
-      console.log(this.image)
       this.$emit('incrementCounterImages')
     }
   }
@@ -112,7 +115,9 @@ a:-webkit-any-link {
 
 .loaderContainer {
   height: 150px;
-  padding: 10px
+  padding: 10px;
+  display:flex;
+  justify-content: center;
 }
 
 </style>

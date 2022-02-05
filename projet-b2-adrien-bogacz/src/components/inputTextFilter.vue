@@ -1,11 +1,14 @@
 <template>
+  <div>
   <v-text-field
       outlined
-      label="Rechercher"
-      append-icon="mdi-map-marker"
+      :label="$t('search-input')"
+      append-icon="mdi-magnify"
       v-model="inputValue"
       @input="$emit('input', inputValue)"
   ></v-text-field>
+
+  </div>
 </template>
 
 <script>
@@ -15,7 +18,8 @@ export default {
 
   data() {
     return {
-      inputValue: ''
+      inputValue: '',
+      label: ''
     }
   },
   updated() {
@@ -25,13 +29,10 @@ export default {
 </script>
 
 <style scoped>
-.v-input {
-  width: 300px;
 
-}
 
-.v-text-field.v-text-field--enclosed {
+/*.v-text-field.v-text-field--enclosed {
   margin-top: 30px;
   margin-left: 30px
-}
+}*/
 </style>

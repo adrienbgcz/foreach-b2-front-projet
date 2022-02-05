@@ -4,7 +4,7 @@
     <v-card class="mx-auto" width="80%">
       <v-btn @click="goBack">
         <v-icon>mdi-arrow-left</v-icon>
-        RETOUR
+        {{ $t("return-btn")}}
       </v-btn>
       <v-img
           :src=imageUrl
@@ -17,9 +17,9 @@
       </v-card-title>
 
       <v-card-subtitle>
-        <div>Height : {{pokemonInfos.height}}"</div>
-        <div>Weight : {{pokemonInfos.weight}} lbs</div>
-        <div>Types :<ul v-for="type in pokemonTypes" :key="type.id"><li>{{type.type.name}}</li></ul></div>
+        <div>{{ $t("height")}} : {{pokemonInfos.height}}"</div>
+        <div>{{ $t("weight")}} : {{pokemonInfos.weight}} lbs</div>
+        <div>{{ $t("types")}} :<ul v-for="type in pokemonTypes" :key="type.id"><li>{{type.type.name}}</li></ul></div>
       </v-card-subtitle>
 
     </v-card>
