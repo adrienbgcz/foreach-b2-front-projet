@@ -6,12 +6,17 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    pokemons: []
+    pokemons: [],
+    favorites: []
   },
   mutations: {
     addPokemonsList(state, pokemonsList) {
       state.pokemons = pokemonsList
-    }
+    },
+    addFavorite(state, pokemon) {
+      state.favorites = [...state.favorites, pokemon]
+      console.log(state.favorites)
+    },
   },
   actions: {
     async getPokemons(context, pokemonsList) {

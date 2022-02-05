@@ -7,6 +7,10 @@
       <v-col cols="3">
         <select-filter :items-list="getLocalesArray" @change="changeLanguage" :label="this.convertLocaleToName(this.$i18n.locale)" />
       </v-col>
+      <v-col cols="3">
+        <router-link :to="{ path: `/favorites` }">Favorites</router-link>
+      </v-col>
+
     </v-row>
 
     <v-row>
@@ -55,7 +59,6 @@ export default {
     }
   },
   async mounted() {
-
     if(this.$store.state.pokemons.length !== 0) {
       console.log("ici")
       console.log(this.isLoadedAllImages)
@@ -77,6 +80,7 @@ export default {
         const pokemons = await getAllPokemons()
         await this.$store.dispatch('getPokemons', pokemons.results)
         this.pokemons = pokemons
+        console.log(pokemons)
       } catch(e) {
         console.error(e)
       }

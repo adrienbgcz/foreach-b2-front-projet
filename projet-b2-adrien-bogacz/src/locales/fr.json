@@ -6,6 +6,7 @@
   "weight" : "Poids",
   "types" : "Types",
   "select-input" : "Sélectionnez",
-  "add-favorites-btn" : "Ajouter"
+  "add-favorites-btn" : "Ajouter",
+  "no-favorites" : "Vous n'avez pas encore de favoris"
 }
 

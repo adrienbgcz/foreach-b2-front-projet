@@ -25,19 +25,19 @@
       <v-card-title>
         {{ pokemonName }}
       </v-card-title>
-      <router-link :to="{ path: `/pokemon/${pokemonId}` }">
       <v-card-actions>
+        <router-link :to="{ path: `/pokemon/${pokemonId}` }">
+          <v-btn color="orange lighten-2" text >
+            {{ $t("more-infos-btn") }}
+          </v-btn>
+        </router-link>
 
-        <v-btn color="orange lighten-2" text >
-          {{ $t("more-infos-btn") }}
-        </v-btn>
-
-        <v-btn color="orange lighten-2" text >
+        <v-btn color="orange lighten-2" text @click="addFavorite" >
           {{ $t("add-favorites-btn") }}
         </v-btn>
 
       </v-card-actions>
-      </router-link>
+
     </v-card>
 
 
@@ -84,9 +84,11 @@ export default {
   },
   methods: {
     async getImage() {
-
       this.image = await this.pokemonInfos.data.sprites.other.dream_world.front_default
       this.$emit('incrementCounterImages')
+    },
+    addFavorite() {
+      this.$store.commit("addFavorite", this.pokemonInfos)
     }
   }
 }
