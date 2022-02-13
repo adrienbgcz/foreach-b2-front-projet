@@ -7,6 +7,6 @@
   "types" : "Types",
   "select-input" : "Select",
   "add-favorites-btn" : "Add",
+  "delete-favorites-btn" : "Delete",
   "no-favorites" : "You have not favorites yet"
-
 }

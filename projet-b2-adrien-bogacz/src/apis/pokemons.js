@@ -1,4 +1,5 @@
 import axios from "axios";
+import ApisConstants from "./apis-constants"
 
 const pokemonsInstance = axios.create({
     baseURL: 'https://pokeapi.co/api/v2/pokemon',
@@ -6,10 +7,10 @@ const pokemonsInstance = axios.create({
 
 export async function getAllPokemons() {
     try {
-        const { data } = await pokemonsInstance.get('/?limit=200&offset=200')
+        const { data } = await pokemonsInstance.get('/?limit=200&offset=100')
         return data;
     } catch (e) {
-        throw new Error('Une erreur est survenue')
+        throw new Error(ApisConstants.ERROR)
     }
 }
 
@@ -18,6 +19,6 @@ export async function getPokemon(id) {
         const { data } = await pokemonsInstance.get(`/${id}`)
         return data;
     } catch (e) {
-        throw new Error('Une erreur est survenue')
+        throw new Error(ApisConstants.ERROR)
     }
 }

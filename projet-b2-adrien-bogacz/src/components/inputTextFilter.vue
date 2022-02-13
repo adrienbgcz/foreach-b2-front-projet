@@ -21,18 +21,10 @@ export default {
       inputValue: '',
       label: ''
     }
-  },
-  updated() {
-    console.log(this.inputValue)
   }
 }
 </script>
 
 <style scoped>
 
-
-/*.v-text-field.v-text-field--enclosed {
-  margin-top: 30px;
-  margin-left: 30px
-}*/
 </style>

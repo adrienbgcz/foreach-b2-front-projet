@@ -1,6 +1,5 @@
 <template>
   <div>
-
     <skeleton-loader v-if="!pokemonName"/>
 
     <v-card v-else
@@ -15,11 +14,11 @@
         ></v-progress-circular>
 
 
-      <v-img v-if="isLoadedAllImages"
-          :src=image
-          height="150px"
-          contain
-      ></v-img>
+        <v-img v-if="isLoadedAllImages"
+            :src=image
+            height="150px"
+            contain
+        ></v-img>
       </div>
 
       <v-card-title>
@@ -32,16 +31,16 @@
           </v-btn>
         </router-link>
 
-        <v-btn color="orange lighten-2" text @click="addFavorite" >
-          {{ $t("add-favorites-btn") }}
+        <v-btn v-if="this.$route.path === '/favorites'" color="orange lighten-2" text @click="deleteFavorite" >
+          {{ $t("delete-favorites-btn") }}
         </v-btn>
 
+        <v-btn v-else color="orange lighten-2" text @click="addFavorite" >
+          {{ $t("add-favorites-btn") }}
+        </v-btn>
       </v-card-actions>
 
     </v-card>
-
-
-
   </div>
 </template>
 
@@ -71,11 +70,6 @@ export default {
       pokemonInfos: {}
     }
   },
-  watch: {
-    isLoadedAllImages()  {
-      console.log(this.isLoadedAllImages)
-    }
-  },
   async mounted() {
     this.pokemonInfos = await axios.get(this.infosUrl)
     await this.getImage()
@@ -89,6 +83,9 @@ export default {
     },
     addFavorite() {
       this.$store.commit("addFavorite", this.pokemonInfos)
+    },
+    deleteFavorite() {
+      this.$store.commit("deleteFavorite", this.pokemonInfos.data.id)
     }
   }
 }

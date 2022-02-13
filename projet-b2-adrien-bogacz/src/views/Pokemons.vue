@@ -26,7 +26,8 @@
 import Card from "@/components/PokemonCard";
 import InputFilter from "@/components/inputTextFilter"
 import {getAllPokemons} from "@/apis/pokemons";
-import SelectFilter from "@/components/SelectFilter"
+import SelectFilter from "@/components/SelectFilter";
+import ViewsConstants from "./views-constants"
 
 
 export default {
@@ -42,7 +43,6 @@ export default {
       pokemons : [],
       counterImage: 0,
       isLoadedAllImages: false,
-      /*locales : this.getLocalesArray()*/
     }
   },
   computed : {
@@ -52,20 +52,14 @@ export default {
     },
     getLocalesArray() {
       let locales = []
-      console.log(this.$i18n.locale)
-      this.$i18n.locale === 'fr' ? locales = ['Français', 'Anglais'] : locales = ['French', 'English']
-      console.log(locales)
+      this.$i18n.locale === ViewsConstants.SHORTCUT_FRENCH ? locales = [ViewsConstants.FRENCH_IN_FRENCH, ViewsConstants.ENGLISH_IN_FRENCH] : locales = [ViewsConstants.FRENCH_IN_ENGLISH, ViewsConstants.ENGLISH_IN_ENGLISH]
       return locales
     }
   },
   async mounted() {
     if(this.$store.state.pokemons.length !== 0) {
-      console.log("ici")
-      console.log(this.isLoadedAllImages)
       this.pokemons.results = this.$store.state.pokemons
-      console.log(this.pokemons)
     } else {
-      console.log("là")
       await this.filteredData()
     }
   },
@@ -73,53 +67,36 @@ export default {
   methods: {
     getValue(value) {
       this.inputValue = value;
-      console.log(this.inputValue)
     },
     async filteredData() {
       try {
         const pokemons = await getAllPokemons()
         await this.$store.dispatch('getPokemons', pokemons.results)
         this.pokemons = pokemons
-        console.log(pokemons)
       } catch(e) {
         console.error(e)
       }
     },
     incrementCounterImage() {
       this.counterImage ++
-      /*console.log(this.counterImage)
-      console.log(this.pokemons.results?.length)*/
       if(this.pokemons.results?.length === this.counterImage) this.isLoadedAllImages = true
     },
-    /*getLocalesArray() {
-      let locales = []
-      console.log(this.$i18n.locale)
-      this.$i18n.locale === 'fr' ? locales = ['Français', 'Anglais'] : locales = ['French', 'English']
-      console.log(locales)
-      return locales
-    },*/
     changeLanguage(chosenLanguage) {
-      console.log(chosenLanguage)
-      console.log(this.convertNameToLocale(chosenLanguage))
       this.$i18n.locale = this.convertNameToLocale(chosenLanguage)
-
-      /*this.locales = this.getLocalesArray()
-      console.log(this.locales)*/
     },
     convertLocaleToName(locale) {
-      if(this.$i18n.locale === "en") {
-        if(locale === "fr") return "French"
-        if(locale === "en") return "English"
+      if(this.$i18n.locale === ViewsConstants.SHORTCUT_ENGLISH) {
+        if(locale === ViewsConstants.SHORTCUT_FRENCH) return ViewsConstants.FRENCH_IN_ENGLISH
+        if(locale === ViewsConstants.SHORTCUT_ENGLISH) return ViewsConstants.ENGLISH_IN_ENGLISH
       }
-      if(this.$i18n.locale === "fr") {
-        if(locale === "fr") return "Français"
-        if(locale === "en") return "Anglais"
+      if(this.$i18n.locale === ViewsConstants.SHORTCUT_FRENCH) {
+        if(locale === ViewsConstants.SHORTCUT_FRENCH) return ViewsConstants.FRENCH_IN_FRENCH
+        if(locale === ViewsConstants.SHORTCUT_ENGLISH) return ViewsConstants.ENGLISH_IN_FRENCH
       }
     },
     convertNameToLocale(name) {
-      console.log(name)
-      if(name.toLowerCase() === "english" || name.toLowerCase() === "anglais") return "en"
-      if(name.toLowerCase() === "french" || name.toLowerCase() === "français") return "fr"
+      if(name.toLowerCase() === ViewsConstants.ENGLISH_IN_ENGLISH || name.toLowerCase() === ViewsConstants.ENGLISH_IN_FRENCH) return ViewsConstants.SHORTCUT_ENGLISH
+      if(name.toLowerCase() === ViewsConstants.FRENCH_IN_ENGLISH || name.toLowerCase() === ViewsConstants.FRENCH_IN_FRENCH) return ViewsConstants.SHORTCUT_FRENCH
     }
 
   }

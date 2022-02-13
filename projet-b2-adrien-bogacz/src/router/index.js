@@ -3,23 +3,24 @@ import VueRouter from "vue-router";
 import Pokemons from "../views/Pokemons.vue";
 import Pokemon from "../views/Pokemon.vue";
 import Favorites from "@/views/Favorites";
+import Names from "./names"
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    name: "Pokemons",
+    name: Names.POKEMONS,
     component: Pokemons
   },
   {
     path: "/pokemon/:id",
-    name: "Pokemon",
+    name: Names.POKEMON,
     component: Pokemon
   },
   {
     path: "/favorites",
-    name: "Favorites",
+    name: Names.FAVORITES,
     component: Favorites
   },
 ];

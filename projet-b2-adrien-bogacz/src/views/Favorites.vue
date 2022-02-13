@@ -4,8 +4,8 @@
       <v-icon>mdi-arrow-left</v-icon>
       {{ $t("return-btn")}}
     </v-btn>
-    <v-row v-if="pokemons.length > 0">
-        <v-col cols="3" v-for="pokemon in pokemons" :key="pokemon.name" >
+    <v-row v-if="favorites.length > 0">
+        <v-col cols="3" v-for="pokemon in favorites" :key="pokemon.id" >
           <card :infos-url="pokemon.config.url" @incrementCounterImages="incrementCounterImage" :is-loaded-all-images="isLoadedAllImages"/>
         </v-col>
     </v-row>
@@ -30,19 +30,20 @@ export default {
   data() {
     return {
       inputValue: "",
-      pokemons : [],
       counterImage: 0,
       isLoadedAllImages: false
     }
   },
-
+  computed: {
+    favorites: function() {
+      return this.$store.state.favorites
+    }
+  },
   async mounted() {
     if(this.$store.state.favorites.length !== 0) {
       this.pokemons = this.$store.state.favorites
-      console.log(this.pokemons)
     }
   },
-
   methods: {
     incrementCounterImage() {
       this.counterImage ++
@@ -50,8 +51,7 @@ export default {
     },
     goBack() {
       this.$router.go(-1)
-    },
-
+    }
   }
 };
 </script>

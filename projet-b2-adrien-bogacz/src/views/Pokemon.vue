@@ -50,7 +50,6 @@ export default {
     this.pokemonInfos = await getPokemon(this.$route.params.id)
     this.pokemonName = capitalizeFirstLetter(this.pokemonInfos.name)
     this.imageUrl = await this.pokemonInfos.sprites.other.dream_world.front_default
-    console.log(this.pokemonInfos.types)
   },
   methods: {
     goBack() {
