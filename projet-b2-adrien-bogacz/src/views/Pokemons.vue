@@ -95,8 +95,8 @@ export default {
       }
     },
     convertNameToLocale(name) {
-      if(name.toLowerCase() === ViewsConstants.ENGLISH_IN_ENGLISH || name.toLowerCase() === ViewsConstants.ENGLISH_IN_FRENCH) return ViewsConstants.SHORTCUT_ENGLISH
-      if(name.toLowerCase() === ViewsConstants.FRENCH_IN_ENGLISH || name.toLowerCase() === ViewsConstants.FRENCH_IN_FRENCH) return ViewsConstants.SHORTCUT_FRENCH
+      if(name.toLowerCase() === ViewsConstants.ENGLISH_IN_ENGLISH_LOWER_CASE || name.toLowerCase() === ViewsConstants.ENGLISH_IN_FRENCH_LOWER_CASE) return ViewsConstants.SHORTCUT_ENGLISH
+      if(name.toLowerCase() === ViewsConstants.FRENCH_IN_ENGLISH_LOWER_CASE || name.toLowerCase() === ViewsConstants.FRENCH_IN_FRENCH_LOWER_CASE) return ViewsConstants.SHORTCUT_FRENCH
     }
 
   }
