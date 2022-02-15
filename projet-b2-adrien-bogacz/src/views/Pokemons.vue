@@ -2,15 +2,14 @@
   <div>
     <v-row class="inputsBar">
       <v-col cols="3">
-        <input-filter @input="getValue" />
+        <input-filter @input="inputValue" v-model="inputValue"/>
       </v-col>
       <v-col cols="3">
         <select-filter :items-list="getLocalesArray" @change="changeLanguage" :label="this.convertLocaleToName(this.$i18n.locale)" />
       </v-col>
       <v-col cols="3">
-        <router-link :to="{ path: `/favorites` }">Favorites</router-link>
+        <router-link class="favorites" :to="{ path: `/favorites` }">Favorites</router-link>
       </v-col>
-
     </v-row>
 
     <v-row>
@@ -65,9 +64,6 @@ export default {
   },
 
   methods: {
-    getValue(value) {
-      this.inputValue = value;
-    },
     async filteredData() {
       try {
         const pokemons = await getAllPokemons()
@@ -107,6 +103,11 @@ export default {
 .inputsBar {
   margin-top: 30px;
   margin-left: 30px;
+}
+
+.favorites {
+  text-decoration: none;
+  color: black;
 }
 
 </style>

@@ -41,7 +41,7 @@ export default {
       imageUrl:""
     }
   },
-  computed:{
+  computed : {
     pokemonTypes: function() {
       return this.pokemonInfos.types
     }
