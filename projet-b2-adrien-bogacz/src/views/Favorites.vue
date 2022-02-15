@@ -5,7 +5,7 @@
       {{ $t("return-btn")}}
     </v-btn>
     <v-row v-if="favorites.length > 0">
-        <v-col cols="3" v-for="pokemon in favorites" :key="pokemon.id" >
+        <v-col cols="3" v-for="pokemon in favorites" :key="pokemon.data.id" >
           <card :infos-url="pokemon.config.url" @incrementCounterImages="incrementCounterImage" :is-loaded-all-images="isLoadedAllImages"/>
         </v-col>
     </v-row>
@@ -35,7 +35,7 @@ export default {
     }
   },
   computed: {
-    favorites: function() {
+    favorites() {
       return this.$store.state.favorites
     }
   },
