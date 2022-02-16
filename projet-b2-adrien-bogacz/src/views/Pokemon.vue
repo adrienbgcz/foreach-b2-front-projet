@@ -1,67 +1,66 @@
 <template>
   <div>
-
     <v-card class="mx-auto" width="80%">
       <v-btn @click="goBack">
         <v-icon>mdi-arrow-left</v-icon>
-        {{ $t("return-btn")}}
+        {{ $t("return-btn") }}
       </v-btn>
-      <v-img
-          :src=imageUrl
-          height="300px"
-          contain
-      ></v-img>
+      <v-img :src="imageUrl" height="300px" contain></v-img>
 
       <v-card-title>
         {{ pokemonName }}
       </v-card-title>
 
       <v-card-subtitle>
-        <div>{{ $t("height")}} : {{pokemonInfos.height}}"</div>
-        <div>{{ $t("weight")}} : {{pokemonInfos.weight}} lbs</div>
-        <div>{{ $t("types")}} :<ul v-for="type in pokemonTypes" :key="type.id"><li>{{type.type.name}}</li></ul></div>
+        <div>{{ $t("height") }} : {{ pokemonInfos.height }}"</div>
+        <div>{{ $t("weight") }} : {{ pokemonInfos.weight }} lbs</div>
+        <div>
+          {{ $t("types") }} :
+          <ul v-for="type in pokemonTypes" :key="type.id">
+            <li>{{ type.type.name }}</li>
+          </ul>
+        </div>
       </v-card-subtitle>
-
     </v-card>
   </div>
 </template>
 
 <script>
-import {getPokemon} from "../apis/pokemons"
-import {capitalizeFirstLetter} from "@/utils/utils";
-
+import { getPokemon } from "../apis/pokemons";
+import { capitalizeFirstLetter } from "@/utils/utils";
 
 export default {
   name: "Pokemon",
 
   data() {
     return {
-      pokemonInfos:{},
+      pokemonInfos: {},
       pokemonName: "",
-      imageUrl:""
-    }
+      imageUrl: "",
+    };
   },
-  computed : {
-    pokemonTypes: function() {
-      return this.pokemonInfos.types
-    }
+  computed: {
+    pokemonTypes: function () {
+      return this.pokemonInfos.types;
+    },
   },
   async mounted() {
-    this.pokemonInfos = await getPokemon(this.$route.params.id)
-    this.pokemonName = capitalizeFirstLetter(this.pokemonInfos.name)
-    this.imageUrl = await this.pokemonInfos.sprites.other.dream_world.front_default
+    this.pokemonInfos = await getPokemon(this.$route.params.id);
+    this.pokemonName = capitalizeFirstLetter(this.pokemonInfos.name);
+    this.imageUrl = await this.pokemonInfos.sprites.other.dream_world
+      .front_default;
   },
   methods: {
     goBack() {
-      this.$router.go(-1)
+      this.$router.go(-1);
     },
-  }
-}
+  },
+};
 </script>
 
 <style scoped>
 .v-btn {
-  margin:20px;
+  margin: 20px;
   color: white;
 }
 
@@ -70,6 +69,6 @@ export default {
 }
 
 .v-card {
-  margin-top: 50px
+  margin-top: 50px;
 }
 </style>

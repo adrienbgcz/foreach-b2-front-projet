@@ -1,10 +1,10 @@
 <template>
   <v-select
-      :items="items"
-      :label="label"
-      v-model="choosenItem"
-      @change="$emit('change', choosenItem)"
-      outlined
+    :items="items"
+    :label="label"
+    v-model="choosenItem"
+    @change="$emit('change', choosenItem)"
+    outlined
   ></v-select>
 </template>
 
@@ -12,24 +12,22 @@
 export default {
   name: "selectFilter",
   props: {
-    itemsList : {
+    itemsList: {
       type: Array,
-      required: true
+      required: true,
     },
     label: {
-      type: String
-    }
+      type: String,
+    },
   },
   mounted() {
-    this.items = this.itemsList
+    this.items = this.itemsList;
   },
   data: () => ({
     items: [],
-    choosenItem : ""
+    choosenItem: "",
   }),
-}
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

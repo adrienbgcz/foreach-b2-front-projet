@@ -1,5 +1,5 @@
 export default {
-    POKEMONS: 'Pokemons',
-    POKEMON : 'Pokemon',
-    FAVORITES : 'Favorites'
-}
+  POKEMONS: "Pokemons",
+  POKEMON: "Pokemon",
+  FAVORITES: "Favorites",
+};

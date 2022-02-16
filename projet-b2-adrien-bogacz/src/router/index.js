@@ -3,7 +3,7 @@ import VueRouter from "vue-router";
 import Pokemons from "../views/Pokemons.vue";
 import Pokemon from "../views/Pokemon.vue";
 import Favorites from "@/views/Favorites";
-import Names from "./names"
+import Names from "./names";
 
 Vue.use(VueRouter);
 
@@ -11,22 +11,22 @@ const routes = [
   {
     path: "/",
     name: Names.POKEMONS,
-    component: Pokemons
+    component: Pokemons,
   },
   {
     path: "/pokemon/:id",
     name: Names.POKEMON,
-    component: Pokemon
+    component: Pokemon,
   },
   {
     path: "/favorites",
     name: Names.FAVORITES,
-    component: Favorites
+    component: Favorites,
   },
 ];
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: "history",
   routes,
 });
 

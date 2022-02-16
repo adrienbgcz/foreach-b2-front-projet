@@ -1,5 +1,3 @@
 export default {
-    ERROR: "Une erreur est survenue"
-}
-
-
+  ERROR: "Une erreur est survenue",
+};
