@@ -11,9 +11,9 @@
           :label="this.convertLocaleToName(this.$i18n.locale)"
         />
       </v-col>
-      <v-col cols="3">
+      <v-col cols="3" align="center">
         <router-link class="favorites" :to="{ path: `/favorites` }"
-          >Favorites</router-link
+          >View my favorites</router-link
         >
       </v-col>
     </v-row>
@@ -141,6 +141,6 @@ export default {
 
 .favorites {
   text-decoration: none;
-  color: black;
+  color: grey;
 }
 </style>
