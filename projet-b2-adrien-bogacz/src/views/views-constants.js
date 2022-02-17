@@ -10,4 +10,8 @@ export default {
   ENGLISH_IN_FRENCH_LOWER_CASE: "anglais",
   FRENCH_IN_ENGLISH_LOWER_CASE: "french",
   ENGLISH_IN_ENGLISH_LOWER_CASE: "english",
+
+  ALREADY_IN_FAVORITES: "This pokemon is already in your favorites",
+  ADD_IN_FAVORITES: "This pokemon has added in your favorites !"
+
 };

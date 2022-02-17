@@ -48,6 +48,7 @@
 import axios from "axios";
 import {capitalizeFirstLetter} from "../utils/utils"
 import SkeletonLoader from "./Skeleton-loader"
+import ViewsConstant from "../views/views-constants"
 
 export default {
   name: "Card",
@@ -82,6 +83,8 @@ export default {
       this.$emit('incrementCounterImages')
     },
     addFavorite() {
+      let found = this.$store.state.favorites.some(favorite => favorite.data.id === this.pokemonInfos.data.id)
+      found ? window.alert(ViewsConstant.ALREADY_IN_FAVORITES) : window.alert(ViewsConstant.ADD_IN_FAVORITES)
       this.$store.commit("addFavorite", this.pokemonInfos)
     },
     deleteFavorite() {
