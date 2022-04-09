@@ -18,7 +18,7 @@ jest.mock('../../../src/apis/pokemons.js', () => ({
 }))
 
 
-describe('Pokemons.vue', () => {
+describe('Pokemon.vue', () => {
   let store;
   let options;
   let state;
