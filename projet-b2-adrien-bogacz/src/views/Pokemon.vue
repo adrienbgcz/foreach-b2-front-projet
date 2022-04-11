@@ -45,15 +45,22 @@ export default {
     },
   },
   async mounted() {
-    this.pokemonInfos = await getPokemon(this.$route.params.id);
-    this.pokemonName = capitalizeFirstLetter(this.pokemonInfos.name);
-    this.imageUrl = await this.pokemonInfos.sprites.other.dream_world
-      .front_default;
+    await this.getCurrentPokemon()
   },
   methods: {
     goBack() {
       this.$router.go(-1);
     },
+    async getCurrentPokemon() {
+      try {
+        this.pokemonInfos = await getPokemon(this.$route.params.id);
+      } catch(e) {
+        console.error(e)
+      }
+      this.pokemonName = capitalizeFirstLetter(this.pokemonInfos.name);
+      this.imageUrl = await this.pokemonInfos.sprites.other.dream_world
+          .front_default;
+    }
   },
 };
 </script>
